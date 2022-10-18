@@ -1,0 +1,67 @@
+<div class="pages">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-end">
+      <div class="mt-2 addRole">
+        <button
+          [routerLink]="['/master/role/add']"
+          routerLinkActive="router-link-active"
+          type="button"
+          class="btn btn-outline-primary"
+        >
+          <i class="fa-solid fa fa-plus mr-2"></i>Add Role
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid bg-white mt-2 mb-2 tableList">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table id="example" class="" style="width: 100%">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Access Profile</th>
+                <th class="text-center">Created At</th>
+                <th class="text-center">Updated At</th>
+
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of list; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td class="text-center">{{ item?.name }}</td>
+                <td class="text-center">{{ item?.accessProfile }}</td>
+                <td class="text-center">
+                  {{ item?.createdAt | date: "MMM d, y" }}
+                </td>
+                <td class="text-center">
+                  {{ item?.updatedAt | date: "MMM d, y" }}
+                </td>
+
+                <td class="text-center">
+                  <div class="icon">
+                    <div class="editIcon">
+                      <i
+                        class="fas fa fa-edit"
+                        routerLink="/master/role/edit/{{ item._id }}"
+                        routerLinkActive="router-link-active"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="icon" (click)="delete(item?._id)">
+                    <div class="editIcon">
+                      <i class="fas fa fa-trash"></i>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

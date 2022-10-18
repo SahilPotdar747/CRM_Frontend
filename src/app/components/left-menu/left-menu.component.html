@@ -1,0 +1,122 @@
+<div class="page-wrapper chiller-theme toggled">
+  <nav id="sidebar" class="sidebar-wrapper custom-scroll-bar">
+    <div class="sidebar-content">
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="active">
+            <a
+              [routerLink]="['/dashboard']"
+              routerLinkActive="router-link-active"
+              class="sidebar-item"
+            >
+              <i class="fas fa fa-home"></i>
+              <span class="menu-items">Dashboard</span>
+              <span class="badge badge-pill badge-warning">New</span>
+            </a>
+          </li>
+          <li class="header-menu">
+            <span>Essential</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a class="cursor-pointer">
+              <i class="fa fa-shopping-cart"></i>
+              <span class="menu-items">Management</span>
+              <span class="badge badge-pill badge-danger">3</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li class="">
+                  <a
+                    [routerLink]="['/master/role']"
+                    routerLinkActive="router-link-active"
+                    ><i class="fa-brands fa fa-black-tie"></i>
+                    <span> Role Management</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a
+                    [routerLink]="['/master/users/list']"
+                    routerLinkActive="router-link-active"
+                    ><i class="fas fa fa-users"></i>
+                    <span> User Management</span></a
+                  >
+                </li>
+                <li class="">
+                  <a
+                    [routerLink]="['/master/group']"
+                    routerLinkActive="router-link-active"
+                    ><i class="fas fa fa-male"></i>
+                    <span>Groups Management</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="header-menu">
+            <span>Components</span>
+          </li>
+          <li class="">
+            <a
+              [routerLink]="['/contacts/list']"
+              routerLinkActive="router-link-active"
+            >
+              <i class="fas fa fa-address-card"></i>
+              <span class="menu-items">Contact Management</span>
+              <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
+            </a>
+          </li>
+          <li class="">
+            <a
+              [routerLink]="['/lead/list']"
+              routerLinkActive="router-link-active"
+            >
+              <i class="fas fa fa-bookmark"></i>
+              <span class="menu-items">Lead Management</span>
+              <!-- <span class="badge badge-pill badge-danger">1</span> -->
+            </a>
+          </li>
+
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+          <li class="">
+            <a
+              [routerLink]="['/organization/list']"
+              routerLinkActive="router-link-active"
+            >
+              <i class="fas fa fa-sitemap"></i>
+              <span class="menu-items">Organization</span>
+              <span class="badge badge-pill badge-primary">Beta</span>
+            </a>
+          </li>
+          <li class="">
+            <a
+              routerLink="/profile/update/{{ userList?._id }}"
+              routerLinkActive="router-link-active"
+            >
+              <i class="fas fa fa-cogs"></i>
+              <span class="menu-items">Profile Settings</span>
+              <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
+            </a>
+          </li>
+          <li class="cursor-pointer" (click)="logout()">
+            <a>
+              <i class="fas fa fa-sign-out"></i>
+              <span class="menu-items">Logout CRM</span>
+              <!-- <span class="badge badge-pill badge-danger">Beta</span> -->
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+  </nav>
+  <!-- sidebar-wrapper  -->
+
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->

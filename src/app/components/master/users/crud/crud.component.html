@@ -1,0 +1,875 @@
+<div class="pages">
+  <div class="content-wrapper">
+    <div class="d-flex justify-content-end mt-2">
+      <button
+        [routerLink]="['/master/users/list']"
+        routerLinkActive="router-link-active"
+        type="button"
+        class="btn btn-outline-primary goBack"
+      >
+        <i class="fas fa fa-backward mr-2"></i>Go Back
+      </button>
+    </div>
+    <section class="content">
+      <div class="main-content">
+        <!-- form creat -->
+        <form #formData="ngForm" (ngSubmit)="onsubmit(formData)">
+          <!-- <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+            <span class="mask bg-gradient-default opacity-8"></span>
+            <div class="container-fluid d-flex align-items-center">
+              <div class="row pl-3">
+                <div class="col-lg-7 col-md-10">
+                  <h1 class="display-2 text-white">Welcome Sahil</h1>
+                  <p class="text-white mt-0 mb-5">
+                    Welcome to the team, We value the talents and ideas of
+                    everyone on our team, especially our new hires. We can't wait
+                    to see what you'll make happen.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="container-fluid big-container">
+            <div class="row">
+              <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+                <div class="card card-profile">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-3 order-lg-2">
+                      <div class="card-profile-image">
+                        <a>
+                          <img src="{{ ProfileUrl }}" class="rounded-circle" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+
+                  <div class="card-body pt-0 pt-md-4">
+                    <div class="text-center">
+                      <div class="h5 font-weight-300">
+                        <br />
+                      </div>
+                      <div class="h5 mt-4">
+                        <i class="fas fa fa-user mr-2"></i
+                        >{{ userForm.firstName + " " + userForm.lastName }}
+                      </div>
+                      <div>
+                        <i class="fas fa fa-envelope mr-2"></i
+                        ><span>{{ userForm.email }}</span>
+                      </div>
+                      <div class="upload-btn-wrapper mt-2">
+                        <button class="btn btn-file cursor-pointer">
+                          Upload Image
+                        </button>
+                        <input
+                          (change)="uploadProfile($event)"
+                          type="file"
+                          name="myfile"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <div class="card card-profile">
+                    <h6 class="heading-small text-muted mt-2 pl-1 mb-4">
+                      Change Password
+                    </h6>
+                    <div class="pl-lg-4 pr-lg-4">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-User Name"
+                              >Password</label
+                            >
+                            <input
+                              [(ngModel)]="userForm.password"
+                              type="password"
+                              name="password"
+                              id="password"
+                              class="form-control form-control-alternative"
+                              placeholder="Password"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-User Name"
+                              >Confirm Password</label
+                            >
+                            <input
+                              [(ngModel)]="userForm.passwordConfirm"
+                              type="password"
+                              name="passwordConfirm"
+                              id="passwordConfirm"
+                              class="form-control form-control-alternative"
+                              placeholder="Confirm Password"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-center mb-3">
+                        <div class="upload-btn-wrapper">
+                          <button type="submit" class="btn btn-file">
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- signature -->
+                <div class="mt-5">
+                  <div class="card card-profile">
+                    <h6 class="heading-small text-muted mt-2 pl-1 mb-4">
+                      Signature Here
+                    </h6>
+                    <div class="pl-lg-4 pr-lg-4">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="class">
+                            <canvas id="sig-canvas"> </canvas>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex justify-content-center mt-3 mb-3">
+                        <div class="upload-btn-wrapper">
+                          <button
+                            type="button"
+                            id="sig-clearBtn"
+                            class="btn btn-file"
+                            (click)="clearSignature()"
+                          >
+                            Clear Signature
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-8 order-xl-1 mb-4">
+                <div class="card">
+                  <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                      <div class="col-8">
+                        <h3 class="mb-0">My Account</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="heading-small text-muted mb-4">
+                      Personal information
+                    </h6>
+                    <div class="pl-lg-4">
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-User Name"
+                              >User Name</label
+                            >
+                            <input
+                              type="text"
+                              [(ngModel)]="userForm.userName"
+                              #userName="ngModel"
+                              required
+                              name="userName"
+                              id="userName"
+                              class="form-control form-control-alternative"
+                              placeholder="User Name"
+                              value=""
+                            />
+                            <div
+                              *ngIf="
+                                userName.invalid &&
+                                userName.errors?.required &&
+                                (userName.dirty || userName.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              User Name is required.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-First Name"
+                              >First Name</label
+                            >
+                            <input
+                              [(ngModel)]="userForm.firstName"
+                              name="firstname"
+                              required
+                              #FirstName="ngModel"
+                              id="firstname"
+                              class="form-control form-control-alternative"
+                              placeholder="First Name"
+                              value=""
+                            />
+                            <div
+                              *ngIf="
+                                FirstName.invalid &&
+                                FirstName.errors?.required &&
+                                (FirstName.dirty || FirstName.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              First Name is required.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-Last Name"
+                              >Last Name</label
+                            >
+                            <input
+                              type="text"
+                              [(ngModel)]="userForm.lastName"
+                              name="lastName"
+                              required
+                              #LastName="ngModel"
+                              id="lastName"
+                              class="form-control form-control-alternative"
+                              placeholder="Last Name"
+                              value=""
+                            />
+                            <div
+                              *ngIf="
+                                LastName.invalid &&
+                                LastName.errors?.required &&
+                                (LastName.dirty || LastName.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Last Name is required.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label class="form-control-label" for="input-email"
+                              >Email address</label
+                            >
+                            <input
+                              [(ngModel)]="userForm.email"
+                              type="email"
+                              required
+                              #Email="ngModel"
+                              name="email"
+                              id="email"
+                              class="form-control form-control-alternative"
+                              placeholder="@example123.com"
+                            />
+                            <div
+                              *ngIf="
+                                Email.invalid &&
+                                Email.errors?.required &&
+                                (Email.dirty || Email.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Email is required.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label class="form-control-label" for="input-email"
+                              >Date of birth</label
+                            >
+                            <input
+                              [(ngModel)]="dateFormate"
+                              type="date"
+                              required
+                              #dob="ngModel"
+                              name="dob"
+                              id="dob"
+                              class="form-control form-control-alternative"
+                              placeholder="DOB"
+                            />
+                            <div
+                              *ngIf="
+                                dob.invalid &&
+                                dob.errors?.required &&
+                                (dob.dirty || dob.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Date of birth is required.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-User Name"
+                              >Gender</label
+                            >
+
+                            <select
+                              [(ngModel)]="userForm.gender"
+                              required
+                              #gender="ngModel"
+                              name="gender"
+                              class="form-control form-control-alternative"
+                            >
+                              <option value="" selected disabled hidden>
+                                Select Gender
+                              </option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                            </select>
+                            <div
+                              *ngIf="
+                                gender.invalid &&
+                                gender.errors?.required &&
+                                (gender.dirty || gender.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Gender is required.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+
+                    <h6 class="heading-small text-muted mb-4">
+                      Contact information
+                    </h6>
+                    <div class="pl-lg-4">
+                      <div class="row">
+                        <div class="col-lg-8">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-address"
+                              >Address</label
+                            >
+                            <textarea
+                              type="text"
+                              name="streetAddress"
+                              id="streetAddress"
+                              required
+                              #streetAddress="ngModel"
+                              class="form-control form-control-alternative"
+                              placeholder="Address"
+                              value=""
+                              [(ngModel)]="userAddress.streetAddress"
+                            ></textarea>
+                            <div
+                              *ngIf="
+                                streetAddress.invalid &&
+                                streetAddress.errors?.required &&
+                                (streetAddress.dirty || streetAddress.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Street Address is required.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label class="form-control-label" for="input-city"
+                              >City</label
+                            >
+                            <input
+                              [(ngModel)]="userAddress.city"
+                              type="text"
+                              name="city"
+                              required
+                              #city="ngModel"
+                              id="city"
+                              class="form-control form-control-alternative"
+                              placeholder="City"
+                              value=""
+                            />
+                            <div
+                              *ngIf="
+                                city.invalid &&
+                                city.errors?.required &&
+                                (city.dirty || city.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              City is required.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label class="form-control-label" for="input-city"
+                              >State</label
+                            >
+                            <input
+                              [(ngModel)]="userAddress.state"
+                              type="text"
+                              name="state"
+                              required
+                              #state="ngModel"
+                              id="state"
+                              class="form-control form-control-alternative"
+                              placeholder="State"
+                              value=""
+                            />
+                            <div
+                              *ngIf="
+                                state.invalid &&
+                                state.errors?.required &&
+                                (state.dirty || state.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              State is required.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-country"
+                              >Country</label
+                            >
+                            <input
+                              [(ngModel)]="userAddress.country"
+                              required
+                              #country="ngModel"
+                              type="text"
+                              name="country"
+                              id="country"
+                              class="form-control form-control-alternative"
+                              placeholder="Country"
+                              value=""
+                            />
+                            <div
+                              *ngIf="
+                                country.invalid &&
+                                country.errors?.required &&
+                                (country.dirty || country.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              country is required.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-country"
+                              >Postal code</label
+                            >
+                            <input
+                              [(ngModel)]="userAddress.postalCode"
+                              type="number"
+                              name="postalCode"
+                              required
+                              #postalCode="ngModel"
+                              id="postalCode"
+                              class="form-control form-control-alternative"
+                              placeholder="Postal code"
+                            />
+                            <div
+                              *ngIf="
+                                postalCode.invalid &&
+                                postalCode.errors?.required &&
+                                (postalCode.dirty || postalCode.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Postal Code is required.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label class="form-control-label" for="input-city"
+                              >Phone Number</label
+                            >
+                            <input
+                              [(ngModel)]="userInfo.mobilePhone"
+                              type="number"
+                              #mobilePhone="ngModel"
+                              required
+                              name="mobilePhone"
+                              id="mobilePhone"
+                              class="form-control form-control-alternative"
+                              placeholder="Phone Number"
+                              value=""
+                            />
+                            <div
+                              *ngIf="
+                                mobilePhone.invalid &&
+                                mobilePhone.errors?.required &&
+                                (mobilePhone.dirty || mobilePhone.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Phone Number is required.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-country"
+                              >Office Number</label
+                            >
+                            <input
+                              [(ngModel)]="userInfo.officePhone"
+                              type="number"
+                              name="officePhone"
+                              id="officePhone"
+                              class="form-control form-control-alternative"
+                              placeholder="Office Number"
+                              value=""
+                            />
+                            <!-- <div
+                              *ngIf="
+                                officePhone.invalid &&
+                                officePhone.errors?.required &&
+                                (officePhone.dirty || officePhone.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Office Number is required.
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-country"
+                              >Fax Number</label
+                            >
+                            <input
+                              [(ngModel)]="userInfo.fax"
+                              type="number"
+                              name="fax"
+                              id="fax"
+                              class="form-control form-control-alternative"
+                              placeholder="Fax Number"
+                            />
+                            <!-- <div
+                              *ngIf="
+                                faxNumber.invalid &&
+                                faxNumber.errors?.required &&
+                                (faxNumber.dirty || faxNumber.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Fax Number is required.
+                            </div> -->
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <h6 class="heading-small text-muted mb-4">
+                        Other information
+                      </h6>
+                      <div class="pl-lg-4">
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="form-group focused">
+                              <label
+                                class="form-control-label"
+                                for="input-User Name"
+                                >Title</label
+                              >
+                              <input
+                                [(ngModel)]="userInfo.title"
+                                type="text"
+                                name="title"
+                                id="title"
+                                class="form-control form-control-alternative"
+                                placeholder="Title"
+                                value=""
+                              />
+                              <!-- <div
+                                *ngIf="
+                                  title.invalid &&
+                                  title.errors?.required &&
+                                  (title.dirty || title.touched)
+                                "
+                                class="invalid-feedback d-flex"
+                              >
+                                Title is required.
+                              </div> -->
+                            </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                            <div class="form-group focused">
+                              <label
+                                class="form-control-label"
+                                for="input-First Name"
+                                >Secondry Phone</label
+                              >
+                              <input
+                                [(ngModel)]="userInfo.secondaryPhone"
+                                type="number"
+                                name="secondaryPhone"
+                                id="secondaryPhone"
+                                class="form-control form-control-alternative"
+                                placeholder="Secondry Phone"
+                                value=""
+                              />
+                              <!-- <div
+                                *ngIf="
+                                  secondaryPhone.invalid &&
+                                  secondaryPhone.errors?.required &&
+                                  (secondaryPhone.dirty || secondaryPhone.touched)
+                                "
+                                class="invalid-feedback d-flex"
+                              >
+                                secondary Phone Number is required.
+                              </div> -->
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group focused">
+                              <label
+                                class="form-control-label"
+                                for="input-Last Name"
+                                >Home Phone</label
+                              >
+                              <input
+                                [(ngModel)]="userInfo.homePhone"
+                                type="number"
+                                name="homePhone"
+                                id="homePhone"
+                                class="form-control form-control-alternative"
+                                placeholder="Home Phone"
+                                value=""
+                              />
+                              <!-- <div
+                                *ngIf="
+                                  homePhone.invalid &&
+                                  homePhone.errors?.required &&
+                                  (homePhone.dirty || homePhone.touched)
+                                "
+                                class="invalid-feedback d-flex"
+                              >
+                                Home Phone Number is required.
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label
+                                class="form-control-label"
+                                for="input-email"
+                                >Secondary Email</label
+                              >
+                              <input
+                                [(ngModel)]="userInfo.secondaryEmail"
+                                type="email"
+                                name="secondaryEmail"
+                                id="secondaryEmail"
+                                class="form-control form-control-alternative"
+                                placeholder="Secondary Email"
+                              />
+                              <!-- <div
+                                *ngIf="
+                                  secondaryEmail.invalid &&
+                                  secondaryEmail.errors?.required &&
+                                  (secondaryEmail.dirty || secondaryEmail.touched)
+                                "
+                                class="invalid-feedback d-flex"
+                              >
+                                Secondary Email is required.
+                              </div> -->
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label
+                                class="form-control-label"
+                                for="input-email"
+                                >Office Email</label
+                              >
+                              <input
+                                [(ngModel)]="userInfo.otherEmail"
+                                name="otherEmail"
+                                type="email"
+                                id="otherEmail"
+                                class="form-control form-control-alternative"
+                                placeholder="Office Email"
+                              />
+                              <!-- <div
+                                *ngIf="
+                                  otherEmail.invalid &&
+                                  otherEmail.errors?.required &&
+                                  (otherEmail.dirty || otherEmail.touched)
+                                "
+                                class="invalid-feedback d-flex"
+                              >
+                                Office Email is required.
+                              </div> -->
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label
+                                class="form-control-label"
+                                for="input-email"
+                                >Department Name</label
+                              >
+                              <input
+                                [(ngModel)]="userInfo.department"
+                                type="text"
+                                name="department"
+                                #department="ngModel"
+                                required
+                                id="department"
+                                class="form-control form-control-alternative"
+                                placeholder="Department Name"
+                              />
+                              <div
+                                *ngIf="
+                                  department.invalid &&
+                                  department.errors?.required &&
+                                  (department.dirty || department.touched)
+                                "
+                                class="invalid-feedback d-flex"
+                              >
+                                Department Name is required.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- default sectoion -->
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="form-group focused">
+                              <label
+                                class="form-control-label"
+                                for="input-User Name"
+                                >Role
+                              </label>
+                              <select
+                                [(ngModel)]="roleName"
+                                name="role"
+                                class="form-control form-control-alternative"
+                                aria-label="Default select example"
+                              >
+                                <option value="" selected disabled hidden>
+                                  Select Any of These
+                                </option>
+                                <option
+                                  *ngFor="let item of roleList"
+                                  [value]="item._id"
+                                >
+                                  {{ item.name }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                            <div class="form-group focused">
+                              <label
+                                class="form-control-label"
+                                for="input-User Name"
+                                >Default Lead View</label
+                              >
+                              <select
+                                [(ngModel)]="userForm.defaultLeadView"
+                                name="defaultLeadView"
+                                class="form-control form-control-alternative"
+                                aria-label="Default select example"
+                              >
+                                <option value="" selected disabled hidden>
+                                  Select Any of These
+                                </option>
+                                <option
+                                  *ngFor="let item of defaultLeadView"
+                                  [value]="item"
+                                >
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                            <div class="form-group focused">
+                              <label
+                                class="form-control-label"
+                                for="input-User Name"
+                                >Default Record View</label
+                              >
+                              <select
+                                [(ngModel)]="userInfo.defaultRecordView"
+                                name="defaultRecordView"
+                                class="form-control form-control-alternative"
+                                aria-label="Default select example"
+                              >
+                                <option value="" selected disabled hidden>
+                                  Select Any of These
+                                </option>
+                                <option
+                                  *ngFor="let item of defaultRecordView"
+                                  [value]="item"
+                                >
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <div class="upload-btn-wrapper">
+                          <button type="submit" class="btn btn-file">
+                            {{ parmsId ? "Update" : "Submit" }}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>

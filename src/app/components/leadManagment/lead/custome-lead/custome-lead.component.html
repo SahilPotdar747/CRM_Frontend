@@ -1,0 +1,800 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-end mt-2">
+    <button
+      [routerLink]="['/lead/list']"
+      routerLinkActive="router-link-active"
+      type="button"
+      class="btn btn-outline-primary goBack"
+    >
+      <i class="fas fa fa-backward mr-2"></i>Go Back
+    </button>
+  </div>
+  <div class="row twoCards">
+    <div class="col-md-4">
+      <div class="class">
+        <div class="d-flex justify-content-between">
+          <div class="dragAble">
+            <div class="d-flex">
+              <div
+                class="d-flex flex-column p-3 custom-scroll-bar shadow position-absolute drop-fields"
+              >
+                <div class="contain-scroll custom-scroll-bar">
+                  <div
+                    class="row px-1"
+                    cdkDropList
+                    [cdkDropListData]="formBuilder.formBuilder"
+                    (cdkDropListDropped)="drop($event)"
+                    [cdkDropListConnectedTo]="[FormData]"
+                  >
+                    <div
+                      class="col-md-6 px-2"
+                      *ngFor="let item of formBuilder.formBuilder"
+                      cdkDrag
+                    >
+                      <div
+                        class="border rounded cursor-pointer p-3 mb-1 mx-1 d-flex align-items-center flex-column"
+                      >
+                        <img [src]="item.src" />
+                        <span class="fs-14 mt-2 color-title-light">{{
+                          item.DLabel
+                        }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-8">
+      <div
+        cdkDropList
+        #FormData="cdkDropList"
+        [cdkDropListData]="formData"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <form
+          action=""
+          #dynamicForm="ngForm"
+          (ngSubmit)="dyanamicData(dynamicForm)"
+        >
+          <div class="">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="heading-small text-muted mb-4">
+                  Personal information
+                </h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-First Name"
+                          >First Name</label
+                        >
+                        <input
+                          name="firstname"
+                          [(ngModel)]="LeadValues.firstName"
+                          id="firstname"
+                          class="form-control form-control-alternative"
+                          placeholder="First Name"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-Last Name"
+                          >Last Name</label
+                        >
+                        <input
+                          type="text"
+                          name="lastName"
+                          id="lastName"
+                          [(ngModel)]="LeadValues.lastName"
+                          class="form-control form-control-alternative"
+                          placeholder="Last Name"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Email address</label
+                        >
+                        <input
+                          type="email"
+                          [(ngModel)]="LeadValues.primaryEmail"
+                          name="email"
+                          id="email"
+                          class="form-control form-control-alternative"
+                          placeholder="@example123.com"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Secondary Email</label
+                        >
+                        <input
+                          type="email"
+                          name="secondaryEmail"
+                          [(ngModel)]="LeadValues.secondaryEmail"
+                          id="secondaryEmail"
+                          class="form-control form-control-alternative"
+                          placeholder="@example123.com"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+
+                <h6 class="heading-small text-muted mb-4">
+                  Contact information
+                </h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-address"
+                          >Street Name</label
+                        >
+                        <input
+                          type="text"
+                          name="street"
+                          [(ngModel)]="LeadValues.address.street"
+                          id="street"
+                          class="form-control form-control-alternative"
+                          placeholder="Street Name"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-city"
+                          >City</label
+                        >
+                        <input
+                          type="text"
+                          name="city"
+                          id="city"
+                          [(ngModel)]="LeadValues.address.city"
+                          class="form-control form-control-alternative"
+                          placeholder="City"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-city"
+                          >State</label
+                        >
+                        <input
+                          type="text"
+                          name="state"
+                          [(ngModel)]="LeadValues.address.state"
+                          id="state"
+                          class="form-control form-control-alternative"
+                          placeholder="State"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-country"
+                          >Country</label
+                        >
+                        <input
+                          type="text"
+                          name="country"
+                          [(ngModel)]="LeadValues.address.country"
+                          id="country"
+                          class="form-control form-control-alternative"
+                          placeholder="Country"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country"
+                          >Postal code</label
+                        >
+                        <input
+                          type="number"
+                          name="postalCode"
+                          [(ngModel)]="LeadValues.address.postalCode"
+                          id="postalCode"
+                          class="form-control form-control-alternative"
+                          placeholder="Postal code"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-User Name"
+                          >Rating</label
+                        >
+                        <select
+                          name="defaultRecordView"
+                          [(ngModel)]="LeadValues.rating"
+                          class="form-control form-control-alternative"
+                          aria-label="Default select example"
+                        >
+                          <option value="" selected disabled hidden>
+                            Select Any of These
+                          </option>
+                          <option value="Acquired">Acquired</option>
+                          <option value="Active">Active</option>
+                          <option value="Market">Market Failed</option>
+                          <option value="Project Cancelled">
+                            Project Cancelled
+                          </option>
+                          <option value="Stutdown">Stutdown</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-city"
+                          >Description</label
+                        >
+                        <textarea
+                          [(ngModel)]="LeadValues.description.desc"
+                          type="text"
+                          name="description"
+                          id="description"
+                          class="form-control form-control-alternative"
+                          placeholder="Description"
+                          value=""
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngFor="let item of initObject">
+                    <hr />
+                    <h6 class="heading-small text-muted mb-4">
+                      Other Information
+                    </h6>
+                    <div class="row">
+                      <div
+                        [ngClass]="
+                          item.type === 'textarea' ? 'col-md-12' : 'col-md-6'
+                        "
+                        *ngFor="let item of formData; let i = index"
+                        cdkDrag
+                      >
+                        <!-- type == text -->
+                        <span class="inputField" *ngIf="item.type == 'text'">
+                          <label class="fs-16 form-control-label mt-1">{{
+                            item.lableName
+                          }}</label>
+                          <input
+                            type="text"
+                            name="{{ item.lableName }}"
+                            ngModel
+                            [ngModelOptions]="{ standalone: true }"
+                            class="form-control form-control-alternative"
+                            placeholder=" {{ item.placeholder }} "
+                          />
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+                        <!-- type == email -->
+                        <span *ngIf="item.type == 'email'">
+                          <label class="fs-16 form-control-label mt-1">{{
+                            item.lableName
+                          }}</label>
+                          <input
+                            type="email"
+                            name="{{ item.lableName }}"
+                            ngModel
+                            [ngModelOptions]="{ standalone: true }"
+                            class="form-control form-control-alternative"
+                            placeholder="{{ item.placeholder }}"
+                          />
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+                        <!-- type == number -->
+                        <span *ngIf="item.type == 'number'">
+                          <label class="fs-16 form-control-label mt-1">{{
+                            item.lableName
+                          }}</label>
+                          <input
+                            type="number"
+                            name="{{ item.lableName }}"
+                            ngModel
+                            [ngModelOptions]="{ standalone: true }"
+                            class="form-control form-control-alternative"
+                            placeholder="{{ item.placeholder }}"
+                          />
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+                        <!-- type == checkbox -->
+                        <span *ngIf="item.type == 'checkbox'">
+                          <label class="fs-16 form-control-label mt-1">{{
+                            item.lableName
+                          }}</label>
+                          <input
+                            type="checkbox"
+                            name="{{ item.lableName }}"
+                            ngModel
+                            class=""
+                            [ngModelOptions]="{ standalone: true }"
+                            placeholder="{{ item.placeholder }}"
+                          />
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+                        <!-- type == date -->
+                        <span *ngIf="item.type == 'date'">
+                          <label class="fs-16 form-control-label mt-1">{{
+                            item.lableName
+                          }}</label>
+                          <input
+                            type="date"
+                            name="{{ item.lableName }}"
+                            ngModel
+                            [ngModelOptions]="{ standalone: true }"
+                            class="form-control form-control-alternative"
+                            placeholder="{{ item.placeholder }}"
+                          />
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+
+                        <!-- type == file -->
+                        <span *ngIf="item.type == 'file'">
+                          <label class="fs-16 form-control-label mt-1">{{
+                            item.lableName
+                          }}</label>
+                          <input
+                            type="file"
+                            name="{{ item.lableName }}"
+                            ngModel
+                            [ngModelOptions]="{ standalone: true }"
+                            class="form-control form-control-alternative"
+                            placeholder="{{ item.placeholder }}"
+                          />
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+                        <!-- type == hyperlink -->
+                        <span *ngIf="item.type == 'hyperlink'">
+                          <label class="fs-16 form-control-label mt-1">{{
+                            item.lableName
+                          }}</label>
+                          <input
+                            type="hyperlink"
+                            name="{{ item.lableName }}"
+                            ngModel
+                            [ngModelOptions]="{ standalone: true }"
+                            class="form-control form-control-alternative"
+                            placeholder="{{ item.placeholder }}"
+                          />
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+                        <!-- type == Switch -->
+                        <span *ngIf="item.type == 'checkbox'">
+                          <div class="custom-control custom-switch">
+                            <input
+                              name="{{ item.lableName }}"
+                              ngModel
+                              [ngModelOptions]="{ standalone: true }"
+                              type="checkbox"
+                              class="custom-control-input"
+                              id="customSwitch1"
+                            />
+                            <label
+                              class="custom-control-label"
+                              for="customSwitch1"
+                            ></label>
+                          </div>
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+
+                        <!-- type == select -->
+                        <span *ngIf="item.type == 'select'">
+                          <label class="fs-16 form-control-label mt-1">{{
+                            item.lableName
+                          }}</label>
+
+                          <select
+                            name="{{ item.lableName }}"
+                            ngModel
+                            class="form-control form-control-alternative"
+                            placeholder="{{ item.placeholder }}"
+                          >
+                            <option value="" selected disabled hidden>
+                              Select Any of These
+                            </option>
+                            <option value="Acquired">Acquired</option>
+                            <option value="Active">Active</option>
+                            <option value="Market">Market Failed</option>
+                            <option value="Project Cancelled">
+                              Project Cancelled
+                            </option>
+                            <option value="Stutdown">Stutdown</option>
+                          </select>
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+
+                        <!-- type == textarea -->
+                        <span *ngIf="item.type == 'textarea'">
+                          <label class="fs-16 form-control-label">{{
+                            item.lableName
+                          }}</label>
+                          <textarea
+                            class="form-control form-control-alternative"
+                            name="{{ item.lableName }}"
+                            ngModel
+                            [ngModelOptions]="{ standalone: true }"
+                            placeholder="{{ item.placeholder }}"
+                          ></textarea>
+                          <div class="d-flex justify-content-end profile-pic">
+                            <div class="edit">
+                              <div class="d-flex">
+                                <span class="mr-3" (click)="deleteTask(i)">
+                                  <i class="fa fa-trash cursor-pointer"></i>
+                                </span>
+
+                                <span (click)="openEditTask(item, i)">
+                                  <i class="fa fa-pencil cursor-pointer"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- new section -->
+                  <div class="list-items"></div>
+                  <!-- end of new section -->
+
+                  <div class="d-flex justify-content-center mt-5 mb-4">
+                    <div class="upload-btn-wrapper">
+                      <button
+                        id="btn1"
+                        type="button"
+                        class="btn btn-file"
+                        (click)="addSection()"
+                      >
+                        Add Section
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center mt-5 mb-4">
+                    <div class="upload-btn-wrapper">
+                      <button type="submit" class="btn btn-file">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-2"></div>
+</div>
+
+<ng-template #FormType>
+  <div class="modal-header py-2">
+    <h5 class="modal-title pull-left mb-0">Enter Data</h5>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form
+      action=""
+      #fieldCreator="ngForm"
+      (ngSubmit)="dynamicFormData(fieldCreator); fieldCreator.resetForm()"
+    >
+      <!-- type text  -->
+      <div class="row">
+        <div class="col-md-6">
+          <label class="fs-16" for="labelName">Label Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lableName"
+            [(ngModel)]="fieldData.label"
+            id="labelName"
+            autocomplete="off"
+            placeholder="Enter label name"
+          />
+        </div>
+        <div class="col-md-6">
+          <label class="fs-16" for="Placeholder">Placeholder:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="placeholder"
+            [(ngModel)]="fieldData.placeholder"
+            id="Placeholder"
+            autocomplete="off"
+            placeholder="Enter placeholder "
+          />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between mt-3">
+        <div class="d-flex">
+          <label class="fs-16 mr-2" for="isRequired">Required: </label>
+          <div class="custom-control custom-switch">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="isRequired"
+              [(ngModel)]="fieldData.isRequired"
+              name="isRequired"
+            />
+            <label class="custom-control-label" for="isRequired"></label>
+          </div>
+        </div>
+        <div class="class">
+          <button
+            type="button"
+            class="btn btn-light btn-sm mx-1"
+            (click)="modalRef.hide()"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            (click)="modalRef.hide()"
+            class="btn btn-success btn-sm mx-1"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #EditFormType>
+  <div class="modal-header py-2">
+    <h5 class="modal-title pull-left mb-0">Edit Data</h5>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form
+      action=""
+      #EditfieldCreator="ngForm"
+      (ngSubmit)="editTask(EditfieldCreator); EditfieldCreator.resetForm()"
+    >
+      <!-- type text  -->
+      <div class="row">
+        <div class="col-md-6">
+          <label class="fs-16" for="labelName">Edit Label Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="labelName"
+            [(ngModel)]="taskData.lableName"
+            id="labelName"
+            autocomplete="off"
+            placeholder="Enter Label Name"
+          />
+        </div>
+        <div class="col-md-6">
+          <label class="fs-16" for="placeholder">Edit Placeholder:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="placeholder"
+            [(ngModel)]="taskData.placeholder"
+            id="placeholder"
+            autocomplete="off"
+            placeholder="Enter Placeholder"
+          />
+        </div>
+        <!-- <div class="col-md-4">
+          <label class="fs-16 mr-2" for="isRequired">Required: </label>
+          <div class="custom-control custom-switch">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="isRequired"
+              [(ngModel)]="taskData.isRequired"
+              name="isRequired"
+            />
+            <label class="custom-control-label" for="isRequired"></label>
+          </div>
+        </div> -->
+        <!-- 
+        <div class="col-md-12 d-flex flex-column mt-2" *ngIf="newOptions">
+          <span class="custom-chips-icon">
+            <mat-form-field class="w-100" id="chips" appearance="fill">
+              <mat-label>Custom options:</mat-label>
+              <mat-chip-list #chipList aria-label="custom options">
+                <mat-chip
+                  *ngFor="let option of options"
+                  (removed)="remove(option)"
+                >
+                  {{ option }}
+                  <button matChipRemove><mat-icon>cancel</mat-icon></button>
+                </mat-chip>
+                <input
+                  placeholder="Enter Options"
+                  #optionInput
+                  name="options"
+                  [(ngModel)]="fieldData.options"
+                  [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  (matChipInputTokenEnd)="add($event)"
+                />
+              </mat-chip-list>
+            </mat-form-field>
+          </span>
+        </div> -->
+      </div>
+
+      <div class="d-flex justify-content-between mt-3">
+        <div class="d-flex">
+          <label class="fs-16 mr-2" for="isRequired">Required: </label>
+          <div class="custom-control custom-switch">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="isRequired"
+              [(ngModel)]="taskData.isRequired"
+              name="isRequired"
+            />
+            <label class="custom-control-label" for="isRequired"></label>
+          </div>
+        </div>
+        <div class="class">
+          <button
+            type="button"
+            class="btn btn-light btn-sm mx-1"
+            (click)="modalRef.hide()"
+          >
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-success text-white mx-1">
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

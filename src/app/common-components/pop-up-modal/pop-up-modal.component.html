@@ -1,0 +1,36 @@
+<!---filter fields strat-->
+<br /><br /><br />
+<div fxLayout="row">
+  <div fxFlex="0"></div>
+  <div fxFlex="100">
+    <mat-card>
+      <mat-card-title>
+        {{ data.content ? data.content : "Somthing went Wrong...!" }}
+      </mat-card-title>
+      <mat-card-content>
+        <!-- button wrapper --><br /><br />
+        <div
+          fxLayout="row"
+          fxLayoutAlign="end center"
+          fxLayoutGap="20px"
+          fxFlexFill
+          class="d-flex justify-content-end"
+        >
+          <div
+            class="icon"
+            mat-dialog-close
+            [mat-dialog-close]="data.id"
+            cdkFocusInitial
+          >
+            <i class="material-icons">done</i>
+            <i class="material-icons">done</i>
+          </div>
+          <div class="icon" mat-dialog-close>
+            <i class="material-icons">close</i>
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

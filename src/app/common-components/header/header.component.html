@@ -1,0 +1,189 @@
+<div class="dashboard-header">
+  <nav class="navbar navbar-expand-lg">
+    <div
+      class="collapse navbar-collapse d-flex justify-content-between"
+      id="navbarSupportedContent"
+    >
+      <div class="cursor-pointer">
+        <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active">
+          <img
+            src="../../../assets/salt-tech-logo.png"
+            alt=""
+            style="width: 10rem"
+          />
+        </a>
+      </div>
+      <div class="d-flex">
+        <div class="class">
+          <ul class="navbar-nav ml-auto navbar-right-top">
+            <li class="nav-item dropdown notification">
+              <a
+                class="nav-link nav-icons"
+                id="navbarDropdownMenuLink1"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><i class="fas fa fa-fw fa-bell"></i
+              ></a>
+              <ul
+                class="dropdown-menu dropdown-menu-right notification-dropdown"
+              >
+                <li>
+                  <div class="notification-title">Notification</div>
+                  <div class="notification-list">
+                    <div class="list-group">
+                      <a
+                        class="list-group-item list-group-item-action cursor-pointer active"
+                      >
+                        <div class="notification-info">
+                          <div class="notification-list-user-img">
+                            <img
+                              src="https://img.icons8.com/office/100/000000/administrator-female.png"
+                              alt=""
+                              class="user-avatar-md rounded-circle"
+                            />
+                          </div>
+                          <div class="notification-list-user-block">
+                            <span class="notification-list-user-name"
+                              >Jeremy Hukonah</span
+                            >accepted your invitation to join the team.
+                            <div class="notification-date">2 min ago</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a
+                        class="list-group-item list-group-item-action cursor-pointer"
+                      >
+                        <div class="notification-info">
+                          <div class="notification-list-user-img">
+                            <img
+                              src="https://img.icons8.com/color/48/000000/administrator-female.png"
+                              alt=""
+                              class="user-avatar-md rounded-circle"
+                            />
+                          </div>
+                          <div class="notification-list-user-block">
+                            <span class="notification-list-user-name"
+                              >John Sammy</span
+                            >updated the email address
+                            <div class="notification-date">2 days ago</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a
+                        class="list-group-item list-group-item-action cursor-pointer"
+                      >
+                        <div class="notification-info">
+                          <div class="notification-list-user-img">
+                            <img
+                              src="https://img.icons8.com/color/100/000000/name.png"
+                              alt=""
+                              class="user-avatar-md rounded-circle"
+                            />
+                          </div>
+                          <div class="notification-list-user-block">
+                            <span class="notification-list-user-name"
+                              >Kioh Samso</span
+                            >
+                            is watching your main repository
+                            <div class="notification-date">2 min ago</div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="list-footer cursor-pointer">
+                    <a>View all notifications</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown nav-user">
+              <a
+                routerLink="/profile/update/{{ userList?._id }}"
+                routerLinkActive="router-link-active"
+                class="nav-link nav-user-img"
+                id="navbarDropdownMenuLink2"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><div class="userName">
+                  <span class="mr-2"
+                    >Hello...
+                    {{ userList?.firstName + " " + userList?.lastName }}</span
+                  >
+                </div>
+
+                <!-- <img
+                  src="{{ ProfileUrl }}"
+                  alt=""
+                  class="user-avatar-md rounded-circle"
+                /> -->
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar-list-4"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-list-4">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="{{ ProfileUrl }}"
+                    width="30"
+                    height="30"
+                    class="rounded-circle"
+                  />
+                </a>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <a
+                    [routerLink]="['/dashboard']"
+                    routerLinkActive="router-link-active"
+                    class="dropdown-item cursor-pointer"
+                  >
+                    <i class="fas fa fa-home"></i> Dashboard</a
+                  >
+                  <a
+                    routerLink="/profile/update/{{ userList?._id }}"
+                    routerLinkActive="router-link-active"
+                    class="dropdown-item cursor-pointer"
+                    ><i class="fas fa fa-cogs"></i> Edit Profile</a
+                  >
+                  <a class="dropdown-item cursor-pointer" (click)="logout()">
+                    <i class="fas fa fa-sign-out"></i> Log Out</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,324 @@
+<div class="pages">
+  <div class="d-flex justify-content-end mt-2">
+    <button
+      [routerLink]="['/lead/list']"
+      routerLinkActive="router-link-active"
+      type="button"
+      class="btn btn-outline-primary goBack"
+    >
+      <i class="fas fa fa-backward mr-2"></i>Go Back
+    </button>
+  </div>
+  <div class="content-wrapper">
+    <section class="content">
+      <div class="main-content">
+        <!-- form creat -->
+        <form #formData="ngForm" (ngSubmit)="leadSubmit(formData)">
+          <div class="col-xl-12 order-xl-1 pt-4">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h6 class="heading-small text-muted mb-4">
+                  Personal information
+                </h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-First Name"
+                          >First Name</label
+                        >
+                        <input
+                          name="firstname"
+                          [(ngModel)]="LeadValues.firstName"
+                          id="firstname"
+                          class="form-control form-control-alternative"
+                          placeholder="First Name"
+                          value=""
+                        />
+                        <!-- <div
+                          *ngIf="
+                            FirstName.invalid &&
+                            FirstName.errors?.required &&
+                            (FirstName.dirty || FirstName.touched)
+                          "
+                          class="invalid-feedback d-flex"
+                        >
+                          First Name is required.
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-Last Name"
+                          >Last Name</label
+                        >
+                        <input
+                          type="text"
+                          name="lastName"
+                          id="lastName"
+                          [(ngModel)]="LeadValues.lastName"
+                          class="form-control form-control-alternative"
+                          placeholder="Last Name"
+                          value=""
+                        />
+                        <!-- <div
+                          *ngIf="
+                            LastName.invalid &&
+                            LastName.errors?.required &&
+                            (LastName.dirty || LastName.touched)
+                          "
+                          class="invalid-feedback d-flex"
+                        >
+                          Last Name is required.
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Email address</label
+                        >
+                        <input
+                          type="email"
+                          [(ngModel)]="LeadValues.primaryEmail"
+                          name="email"
+                          id="email"
+                          class="form-control form-control-alternative"
+                          placeholder="@example123.com"
+                        />
+                        <!-- <div
+                          *ngIf="
+                            Email.invalid &&
+                            Email.errors?.required &&
+                            (Email.dirty || Email.touched)
+                          "
+                          class="invalid-feedback d-flex"
+                        >
+                          Email is required.
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Secondary Email</label
+                        >
+                        <input
+                          type="email"
+                          name="secondaryEmail"
+                          [(ngModel)]="LeadValues.secondaryEmail"
+                          id="secondaryEmail"
+                          class="form-control form-control-alternative"
+                          placeholder="@example123.com"
+                        />
+                        <!-- <div
+                          *ngIf="
+                            dob.invalid &&
+                            dob.errors?.required &&
+                            (dob.dirty || dob.touched)
+                          "
+                          class="invalid-feedback d-flex"
+                        >
+                          Date of birth is required.
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+
+                <h6 class="heading-small text-muted mb-4">
+                  Contact information
+                </h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-address"
+                          >Street Name</label
+                        >
+                        <input
+                          type="text"
+                          name="street"
+                          [(ngModel)]="LeadValues.address.street"
+                          id="street"
+                          class="form-control form-control-alternative"
+                          placeholder="Street Name"
+                        />
+                        <!-- <div
+                          *ngIf="
+                            streetAddress.invalid &&
+                            streetAddress.errors?.required &&
+                            (streetAddress.dirty || streetAddress.touched)
+                          "
+                          class="invalid-feedback d-flex"
+                        >
+                          Street Address is required.
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-city"
+                          >City</label
+                        >
+                        <input
+                          type="text"
+                          name="city"
+                          id="city"
+                          [(ngModel)]="LeadValues.address.city"
+                          class="form-control form-control-alternative"
+                          placeholder="City"
+                          value=""
+                        />
+                        <!-- <div
+                          *ngIf="
+                            city.invalid &&
+                            city.errors?.required &&
+                            (city.dirty || city.touched)
+                          "
+                          class="invalid-feedback d-flex"
+                        >
+                          City is required.
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-city"
+                          >State</label
+                        >
+                        <input
+                          type="text"
+                          name="state"
+                          [(ngModel)]="LeadValues.address.state"
+                          id="state"
+                          class="form-control form-control-alternative"
+                          placeholder="State"
+                          value=""
+                        />
+                        <!-- <div
+                          *ngIf="
+                            state.invalid &&
+                            state.errors?.required &&
+                            (state.dirty || state.touched)
+                          "
+                          class="invalid-feedback d-flex"
+                        >
+                          State is required.
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-country"
+                          >Country</label
+                        >
+                        <input
+                          type="text"
+                          name="country"
+                          [(ngModel)]="LeadValues.address.country"
+                          id="country"
+                          class="form-control form-control-alternative"
+                          placeholder="Country"
+                          value=""
+                        />
+                        <!-- <div
+                          *ngIf="
+                            country.invalid &&
+                            country.errors?.required &&
+                            (country.dirty || country.touched)
+                          "
+                          class="invalid-feedback d-flex"
+                        >
+                          country is required.
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country"
+                          >Postal code</label
+                        >
+                        <input
+                          type="number"
+                          name="postalCode"
+                          [(ngModel)]="LeadValues.address.postalCode"
+                          id="postalCode"
+                          class="form-control form-control-alternative"
+                          placeholder="Postal code"
+                        />
+                        <!-- <div
+                              *ngIf="
+                                postalCode.invalid &&
+                                postalCode.errors?.required &&
+                                (postalCode.dirty || postalCode.touched)
+                              "
+                              class="invalid-feedback d-flex"
+                            >
+                              Postal Code is required.
+                            </div> -->
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-User Name"
+                          >Rating</label
+                        >
+                        <select
+                          name="defaultRecordView"
+                          [(ngModel)]="LeadValues.rating"
+                          class="form-control form-control-alternative"
+                          aria-label="Default select example"
+                        >
+                          <option value="" selected disabled hidden>
+                            Select Any of These
+                          </option>
+                          <option>Acquired</option>
+                          <option>Active</option>
+                          <option>Market Failed</option>
+                          <option>Project Cancelled</option>
+                          <option>Stutdown</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-city"
+                          >Description</label
+                        >
+                        <textarea
+                          [(ngModel)]="description"
+                          type="text"
+                          name="description"
+                          id="description"
+                          class="form-control form-control-alternative"
+                          placeholder="Description"
+                          value=""
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center">
+                    <div class="upload-btn-wrapper">
+                      <button type="submit" class="btn btn-file">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>

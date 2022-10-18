@@ -1,0 +1,190 @@
+<div id="page-content-wrapper">
+  <div class="pages">
+    <div class="row justify-content-around">
+      <div class="dashboardInfo cursor-pointer col-lg-2 col-md-6">
+        <div class="wrap">
+          <h4 class="medium-font-weight dashboardInfo__title">
+            Roles Management
+          </h4>
+          <a
+            [routerLink]="['/master/role']"
+            routerLinkActive="router-link-active"
+          >
+            <span class="dashboardInfo__count">{{ roleCount }} Roles</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="dashboardInfo cursor-pointer col-lg-2 col-md-6">
+        <div class="wrap">
+          <h4 class="medium-font-weight dashboardInfo__title">
+            Groups Management
+          </h4>
+
+          <a
+            [routerLink]="['/master/group']"
+            routerLinkActive="router-link-active"
+          >
+            <span class="dashboardInfo__count">{{ groupCount }} Groups</span>
+          </a>
+        </div>
+      </div>
+      <div class="dashboardInfo cursor-pointer col-lg-2 col-md-6">
+        <div class="wrap">
+          <h4 class="medium-font-weight dashboardInfo__title">
+            Users Management
+          </h4>
+          <a
+            [routerLink]="['/master/users/list']"
+            routerLinkActive="router-link-active"
+          >
+            <span class="dashboardInfo__count">{{ userCount }} Users</span>
+          </a>
+        </div>
+      </div>
+      <div class="dashboardInfo cursor-pointer col-lg-2 col-md-6">
+        <div class="wrap">
+          <h4 class="medium-font-weight dashboardInfo__title">
+            Contacts Management
+          </h4>
+          <a
+            [routerLink]="['/contacts/list']"
+            routerLinkActive="router-link-active"
+          >
+            <span class="dashboardInfo__count"
+              >{{ contactCount }} Contacts</span
+            >
+          </a>
+        </div>
+      </div>
+      <div class="dashboardInfo col-lg-2 col-md-6 cursor-pointer">
+        <div class="wrap">
+          <h4 class="medium-font-weight dashboardInfo__title">
+            Leads Management
+          </h4>
+
+          <a
+            [routerLink]="['/lead/list']"
+            routerLinkActive="router-link-active"
+          >
+            <span class="dashboardInfo__count">{{ leadcount }} Leads</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- end -->
+
+    <!-- table login -->
+    <div class="row mb-4">
+      <div class="card col-12 card1">
+        <div class="card1_title_wrapper">
+          <h1 class="car1_title">Login Deatils</h1>
+        </div>
+        <div class="card1_table_wrapper">
+          <table class="card1_table">
+            <thead class="card1_table_head">
+              <tr>
+                <th>Name</th>
+                <th class="text-center">User Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Dob</th>
+
+                <th class="text-center">Role</th>
+                <th class="text-center">Access Profile</th>
+                <th class="text-center">Lead View</th>
+                <th class="text-center">Created At</th>
+                <th class="text-center">Updated At</th>
+              </tr>
+            </thead>
+            <tbody class="card1_table_tbody">
+              <tr>
+                <td>
+                  <i class="fas fa fa fa-map-pin"></i>
+
+                  {{ userList.firstName + " " + userList.lastName }}
+                </td>
+                <td class="text-center">{{ userList.userName }}</td>
+                <td class="text-center">{{ userList.email }}</td>
+                <td class="text-center">{{ userList.gender }}</td>
+                <td class="text-center">
+                  {{ userList.dob | date: "MMM d, y" }}
+                </td>
+                <td class="text-center">{{ userList.role.name }}</td>
+                <td class="text-center">{{ userList.role.accessProfile }}</td>
+                <td class="text-center">{{ userList.defaultLeadView }}</td>
+                <td class="text-center">
+                  {{ userList.role.createdAt | date: "MMM d, y" }}
+                </td>
+                <td class="text-center">
+                  {{ userList.role.updatedAt | date: "MMM d, y" }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- end of table -->
+
+    <!-- charts -->
+    <div class="row">
+      <div class="col-4">
+        <div class="card card2">
+          <canvas id="mychart" width="100%" height="70px" #mychart></canvas>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card card3">
+          <canvas id="mychart1" width="100%" height="70px" #mychart1></canvas>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card card3">
+          <canvas id="mychart2" width="100%" height="70px" #mychart2></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- end of charts -->
+
+    <!-- user table -->
+    <div class="row mt-3">
+      <div class="card col-12 card4 custom-scroll-bar">
+        <div class="card1_title_wrapper">
+          <h1 class="car1_title">Users List</h1>
+        </div>
+        <div class="card1_table_wrapper">
+          <table class="card1_table">
+            <thead class="card1_table_head">
+              <tr>
+                <th>No.</th>
+                <th class="text-center">User Name</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Date Of Birth</th>
+                <th class="text-center">Lead View</th>
+              </tr>
+            </thead>
+            <tbody class="card1_table_tbody">
+              <tr *ngFor="let item of userlist; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td class="text-center">
+                  {{ item?.userName }}
+                </td>
+                <td class="text-center">
+                  {{ item?.firstName + " " + item?.lastName }}
+                </td>
+                <td class="text-center">{{ item?.email }}</td>
+                <td class="text-center">{{ item?.gender }}</td>
+                <td class="text-center">{{ item?.dob | date: "MMM d, y" }}</td>
+                <td class="text-center">{{ item?.defaultLeadView }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- end of user table -->
+  </div>
+</div>

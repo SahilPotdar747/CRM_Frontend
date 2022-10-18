@@ -1,0 +1,113 @@
+<div class="pages">
+  <div class="content-wrapper">
+    <div class="d-flex justify-content-end mt-2">
+      <button
+        [routerLink]="['/master/role']"
+        routerLinkActive="router-link-active"
+        type="button"
+        class="btn btn-outline-primary goBack"
+      >
+        <i class="fas fa fa-backward mr-2"></i>Go Back
+      </button>
+    </div>
+    <section class="content">
+      <div class="main-content">
+        <!-- form creat -->
+        <form [formGroup]="roleManagment" (ngSubmit)="onSubmitForm()">
+          <div class="container-fluid pb-8 pt-5">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="card">
+                  <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                      <div class="col-12">
+                        <h3 class="mb-0">Roles</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="heading-small text-muted mb-4">Add Roles</h6>
+                    <div class="pl-lg-4">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group focused">
+                            <label class="form-control-label" for="input-Name"
+                              >Role Name</label
+                            >
+                            <input
+                              type="text"
+                              name="Name"
+                              id="Name"
+                              class="form-control form-control-alternative"
+                              placeholder="Name"
+                              formControlName="name"
+                            />
+
+                            <div
+                              *ngIf="
+                                roleManagment.controls.name.invalid &&
+                                (roleManagment.controls.name.dirty ||
+                                  roleManagment.controls.name.touched)
+                              "
+                              class="alert alert-danger form-danger"
+                              role="alert"
+                            >
+                              <div
+                                *ngIf="
+                                  roleManagment.controls.name.errors.required
+                                "
+                              >
+                                Name is Required
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-Access Profile"
+                              >Access Profile</label
+                            >
+
+                            <select
+                              formControlName="accessProfile"
+                              name="role"
+                              class="form-control form-control-alternative"
+                              aria-label="Default select example"
+                            >
+                              <option value="" selected disabled hidden>
+                                Select Any of These
+                              </option>
+                              <option
+                                *ngFor="let item of accesList"
+                                [value]="item"
+                              >
+                                {{ item }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="pl-lg-4">
+                      <div class="d-flex justify-content-center">
+                        <div class="upload-btn-wrapper">
+                          <button type="submit" class="btn btn-file">
+                            {{ parmsId ? "Update" : "Submit" }}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>

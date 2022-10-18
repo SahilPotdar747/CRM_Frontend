@@ -1,0 +1,256 @@
+.pages {
+  margin-left: 15rem;
+}
+a:hover {
+  color: #0056b3;
+  text-decoration: none !important;
+}
+.dashboardInfo {
+  margin-bottom: 15px;
+}
+.dashboardInfo .wrap {
+  background: #ffffff;
+  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 25px 20px;
+
+  width: 13rem;
+}
+.dashboardInfo__title,
+.dashboardInfo__subInfo {
+  color: #6c6c6c;
+  font-size: 14px;
+}
+.dashboardInfo span {
+  display: block;
+}
+.dashboardInfo__count {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 64px;
+  color: #323c43;
+}
+.dashboardInfo .wrap:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  content: "";
+}
+
+/* Sidebar Styles Ends Here */
+
+/* Page Content Styles Starts Here */
+
+#page-content-wrapper {
+  /* min-width: 100vw; */
+  min-width: 0;
+  width: 100%;
+  padding: 30px;
+}
+
+.card {
+  color: #858788;
+  padding: 20px;
+  border: none;
+  box-shadow: 2px 10px 20px rgb(0 0 0 / 10%);
+  border-radius: 15px;
+}
+
+.card1 {
+  min-width: 70%;
+  margin-right: 15px;
+}
+
+.card1_title_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.car1_title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.car1_text {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.card1_span {
+  color: #ee3600;
+  font-size: 14px;
+}
+
+.card1_table_wrapper {
+  margin-top: 25px;
+}
+
+.card1_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.card1_table_head {
+  text-align: left;
+  border-radius: 10px;
+}
+
+.card1_table_head tr th {
+  padding: 10px;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.card1_table_tbody .positiveIcon {
+  font-size: 12px;
+  padding: 6px;
+  margin-right: 5px;
+  background: linear-gradient(145deg, #353333, #4d4949);
+  border-radius: 100%;
+  box-shadow: inset 12.61px 12.61px 15px #2b2929,
+    inset -12.61px -12.61px 15px #575353;
+}
+
+.card1_table_tbody .negativeIcon {
+  font-size: 12px;
+  padding: 6px 8px;
+  margin-right: 5px;
+  color: black;
+  background: #d74b0f;
+  border-radius: 100%;
+  box-shadow: inset 1.2px 1.2px 3px #852f09, inset -1.2px -1.2px 3px #ff6815;
+}
+
+.card1_table_tbody tr td {
+  padding: 18px 10px;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.card2 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.btn {
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 15px;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  box-shadow: inset 0px -1px 4px 0px #484d55;
+  background: linear-gradient(to bottom, #2d3035 5%, #484d55 100%);
+  background-color: #2d3035;
+  border: 1px solid #2d3035;
+  color: #858788;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(to bottom, #484d55 5%, #2d3035 100%);
+  background-color: #484d55;
+}
+
+.btn-primary {
+  background: linear-gradient(to bottom, #ee3800 5%, #e8641c 100%);
+  background-color: #ee3800;
+  border: 1px solid #ee3800;
+  color: #000000;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to bottom, #e8641c 5%, #ee3800 100%);
+  background-color: #e8641c;
+}
+/* Button Styles Ends Here */
+
+.card3 {
+  flex: 1;
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.weather_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weather_title span {
+  font-weight: bold;
+}
+
+.weather_image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather_image img {
+  margin-bottom: 8px;
+}
+
+.weather_image span {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.weather_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left_numbers p {
+  font-weight: bold;
+  font-size: 13px;
+  padding: 5px 0;
+}
+
+.left_numbers p i {
+  width: 5px;
+  margin-right: 20px;
+}
+
+.right_degree p {
+  font-weight: bold;
+  font-size: 52px;
+}
+
+.card3 .weather {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid #cf1806;
+  box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
+    inset 0 -15px 15px rgba(255, 255, 255, 0.05), 0 15px 15px rgba(0, 0, 0, 0.3),
+    inset 0 15px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card4 {
+  max-height: calc(100vh - 25rem);
+  overflow-y: scroll;
+}

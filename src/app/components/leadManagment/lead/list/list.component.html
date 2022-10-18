@@ -1,0 +1,134 @@
+<div class="pages">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-end">
+      <div class="d-flex mt-2 mb-2">
+        <div class="mr-2">
+          <div class="btn-group">
+            <button type="button" class="importbtn btn btn-outline-primary">
+              <i class="fas fa fa-upload"></i> Import Leads
+            </button>
+
+            <!-- upload file -->
+
+            <input
+              (change)="uploadCSVFile($event)"
+              class="hide_file"
+              type="file"
+              name="myfile"
+              accept=".csv"
+            />
+          </div>
+        </div>
+        <div class="mr-2 leadSetting">
+          <button
+            [routerLink]="['/lead/custome']"
+            routerLinkActive="router-link-active"
+            type="button"
+            class="btn btn-outline-primary"
+          >
+            <i class="fas fa fa fa-cog"> Lead Setting</i>
+          </button>
+        </div>
+
+        <div class="mr-2 addLeads">
+          <button
+            [routerLink]="['/lead/add']"
+            routerLinkActive="router-link-active"
+            type="button"
+            class="btn btn-outline-primary"
+          >
+            <i class="fa-solid fa fa-plus mr-2"></i>Add Leads
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- table section -->
+  <div class="container-fluid bg-white mb-2 tableList">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table id="example" class="" style="width: 100%">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Address</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Rating</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of leadList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td class="text-center">
+                  {{ item?.firstName + " " + item?.lastName }}
+                </td>
+                <td class="text-center">{{ item?.primaryEmail }}</td>
+                <td class="text-center">
+                  {{
+                    item?.address?.street +
+                      " " +
+                      item?.address?.city +
+                      " " +
+                      item?.address?.state +
+                      " " +
+                      item?.address?.country +
+                      " " +
+                      item?.address?.postalCode
+                  }}
+                </td>
+                <td class="text-center">{{ item?.description?.desc }}</td>
+                <td class="text-center">{{ item?.rating }}</td>
+
+                <td class="text-center">
+                  <div class="icon">
+                    <!-- <div class="editIcon">
+                      <i
+                        class="fas fa fa-edit"
+                        routerLink="/lead/edit/{{ item?._id }}"
+                        routerLinkActive="router-link-active"
+                      ></i>
+                    </div> -->
+                    <div class="dropdown">
+                      <a
+                        class="btn btn dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i class="fas fa fa-edit"></i>
+                      </a>
+
+                      <div class="dropdown-menu">
+                        <a
+                          routerLink="/lead/edit/{{ item?._id }}"
+                          routerLinkActive="router-link-active"
+                          class="dropdown-item"
+                          >Edit Lead</a
+                        >
+                        <a
+                          routerLink="/lead/custome/{{ item?._id }}"
+                          routerLinkActive="router-link-active"
+                          class="dropdown-item"
+                          >Lead Setting</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="icon" (click)="delete(item?._id)">
+                    <div class="editIcon">
+                      <i class="fas fa fa-trash"></i>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="pages">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-end">
+      <div class="d-flex mt-2 mb-2">
+        <div class="mr-2">
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary">
+              <i class="fas fa fa-upload"></i> Import Users
+            </button>
+
+            <!-- upload file -->
+
+            <input
+              (change)="uploadCSVFile($event)"
+              class="hide_file"
+              type="file"
+              name="myfile"
+              accept=".csv"
+            />
+          </div>
+        </div>
+        <div class="addUser">
+          <button
+            [routerLink]="['/master/users/']"
+            routerLinkActive="router-link-active"
+            type="button"
+            class="btn btn-outline-primary"
+          >
+            <i class="fa-solid fa fa-plus mr-2"></i>Add User
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- table section -->
+  <div class="container-fluid bg-white tableList">
+    <div class="row">
+      <div class="col-md-12 mb-4">
+        <div class="table-responsive">
+          <table id="example" class="" style="width: 100%">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <!-- <th class="text-center">User Image</th> -->
+                <th class="text-center">User Name</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">Date Of Birth</th>
+                <th class="text-center">Lead View</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of list; let i = index">
+                <td>{{ i + 1 }}</td>
+                <!-- <td class="text-center">{{ item?.photo.userImage }}</td> -->
+
+                <td class="text-center">{{ item?.userName }}</td>
+                <td class="text-center">
+                  {{ item?.firstName + " " + item?.lastName }}
+                </td>
+                <td class="text-center">{{ item?.email }}</td>
+                <td class="text-center">{{ item?.gender }}</td>
+                <td class="text-center">{{ item?.dob | date: "MMM d, y" }}</td>
+                <td class="text-center">{{ item?.defaultLeadView }}</td>
+                <td class="text-center">
+                  <div class="icon">
+                    <div
+                      class="editIcon"
+                      routerLink="/master/users/edit/{{ item?._id }}"
+                      routerLinkActive="router-link-active"
+                    >
+                      <i class="fas fa fa-edit"></i>
+                    </div>
+                  </div>
+                  <div class="icon" (click)="delete(item?._id)">
+                    <div class="editIcon">
+                      <i class="fas fa fa-trash"></i>
+                    </div>
+                  </div>
+                  <!-- <div
+                    class="icon"
+                    routerLink="/master/users/edit/{{ item?._id }}"
+                    routerLinkActive="router-link-active"
+                  >
+                    <i class="material-icons">create</i>
+                    <i class="material-icons">add</i>
+                  </div>
+                  <div class="icon">
+                    <i class="material-icons" (click)="delete(item?._id)"
+                      >delete</i
+                    >
+                    <i class="material-icons" (click)="delete(item?._id)"
+                      >remove</i
+                    >
+                  </div> -->
+                </td>
+                <!-- <a class="edit"><i class="fas fa fa-edit mr-5"></i></a>
+                  <a class="edit"><i class="fas fa fa-edit"></i></a> -->
+
+                <!-- <td><button type="button" routerLink="/master/users/edit/{{item?._id}}"
+                    routerLinkActive="router-link-active">Edit</button></td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
